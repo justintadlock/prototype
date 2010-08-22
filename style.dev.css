@@ -1,0 +1,7 @@
+/**
+ * Development stylesheet.  Use this file for development purposes by adding this to your 'wp-config.php' file:
+ * define( 'SCRIPT_DEBUG', true );
+ * This allows you to build large-sized stylesheets with plenty notes and comments. Before releasing, compress
+ * this file and replace the compressed CSS in the 'style.css' file.
+ * @link http://www.cssdrive.com/index.php/main/csscompressor
+ */
