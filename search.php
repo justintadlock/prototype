@@ -5,7 +5,7 @@
  * The search template is loaded when a visitor uses the search form to search for something
  * on the site.
  *
- * @package News
+ * @package Prototype
  * @subpackage Template
  */
 
@@ -31,15 +31,17 @@ get_header(); ?>
 
 						<?php do_atomic( 'open_entry' ); // Open loop hook ?>
 
-						<?php get_the_image( array( 'meta_key' => array( 'Thumbnail' ), 'size' => 'news-thumbnail' ) ); ?>
+						<?php if ( current_theme_supports( 'get-the-image' ) ) get_the_image( array( 'meta_key' => array( 'Thumbnail' ), 'size' => 'news-thumbnail' ) ); ?>
 
 						<?php echo apply_atomic_shortcode( 'entry_title', '[entry-title]' ); ?>
 
-						<?php echo apply_atomic_shortcode( 'byline', '<div class="byline">[entry-published] [entry-comments-link] [entry-popup-shortlink] [entry-edit-link before=" | "]</div>' ); ?>
+						<?php echo apply_atomic_shortcode( 'byline', '<div class="byline">' . __( 'By [entry-author] on [entry-published] [entry-edit-link before=" | "]', hybrid_get_textdomain() ) . '</div>' ); ?>
 
 						<div class="entry-summary">
 							<?php the_excerpt(); ?>
 						</div><!-- .entry-summary -->
+
+						<?php echo apply_atomic_shortcode( 'entry_meta', '<div class="entry-meta">' . __( '[entry-terms taxonomy="category" before="Posted in "] [entry-terms before="| Tagged "] [entry-comments-link before=" | "]', hybrid_get_textdomain() ) . '</div>' ); ?>
 
 						<?php do_atomic( 'close_entry' ); // Close loop hook ?>
 

@@ -6,7 +6,7 @@
  * to the comment type (comment.php, comment-{$comment_type}.php, comment-pingback.php, 
  * comment-trackback.php) in a child theme.
  *
- * @package News
+ * @package Prototype
  * @subpackage Template
  */
 
@@ -23,7 +23,7 @@
 
 			<?php echo hybrid_avatar(); ?>
 
-			<?php echo apply_atomic_shortcode( 'comment_meta', '<div class="comment-meta comment-meta-data">[comment-author] [comment-published] [comment-permalink before="| "] [comment-edit-link before="| "] [comment-reply-link]</div>' ); ?>
+			<?php echo apply_atomic_shortcode( 'comment_meta', '<div class="comment-meta comment-meta-data">[comment-author] [comment-published] [comment-permalink before="| "] [comment-edit-link before="| "] [comment-reply-link before="| "]</div>' ); ?>
 
 			<div class="comment-content comment-text">
 				<?php if ( '0' == $comment->comment_approved ) : ?>

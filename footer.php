@@ -7,7 +7,7 @@
  * wrapper, which is opened with the header.php file. It also executes key functions needed
  * by the theme, child themes, and plugins. 
  *
- * @package News
+ * @package Prototype
  * @subpackage Template
  */
 ?>
@@ -15,13 +15,13 @@
 
 			<?php get_sidebar( 'secondary' ); ?>
 
-			<?php do_atomic( 'close_container' ); // Close container hook ?>
+			<?php do_atomic( 'close_main' ); // Close main hook ?>
 
 			</div><!-- .wrap -->
 
-		</div><!-- #container -->
+		</div><!-- #main -->
 
-		<?php do_atomic( 'after_container' ); // After container hook ?>
+		<?php do_atomic( 'after_main' ); // After main hook ?>
 
 		<?php do_atomic( 'before_footer' ); // Before footer hook ?>
 
@@ -41,10 +41,10 @@
 
 		<?php do_atomic( 'after_footer' ); // After footer hook ?>
 
-	</div><!-- #body-container -->
+	</div><!-- #container -->
 
 	<?php wp_footer(); // WordPress footer hook ?>
-	<?php do_atomic( 'after_html' ); // After HTML hook ?>
+	<?php do_atomic( 'close_body' ); // After HTML hook ?>
 
 </body>
 </html>

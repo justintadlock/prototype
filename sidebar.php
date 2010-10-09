@@ -5,7 +5,7 @@
  * This template should not be shown.  It is a placeholder used when a more specific sidebar template isn't
  * found.  Templates for specific sidebars should be used.
  *
- * @package News
+ * @package Prototype
  * @subpackage Template
  */
 ?>

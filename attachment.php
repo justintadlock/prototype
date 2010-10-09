@@ -5,7 +5,7 @@
  * This is the default attachment template.  It is used when visiting the singular view of a post attachment 
  * page (images, videos, audio, etc.).
  *
- * @package News
+ * @package Prototype
  * @subpackage Template
  */
 

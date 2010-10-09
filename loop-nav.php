@@ -5,7 +5,7 @@
  * This template is used to show your your next/previous post links on singular pages and
  * the next/previous posts links on the home/posts page and archive pages.
  *
- * @package News
+ * @package Prototype
  * @subpackage Template
  */
 ?>
@@ -19,8 +19,8 @@
 	<?php elseif ( is_singular( 'post' ) ) : ?>
 
 		<div class="loop-nav navigation-links">
-			<?php previous_post_link( '%link', '<span class="previous">' . __( '&larr; Previous', hybrid_get_textdomain() ) . '</span>' ); ?>
-			<?php next_post_link( '%link', '<span class="next">' . __( 'Next &rarr;', hybrid_get_textdomain() ) . '</span>' ); ?>
+			<?php previous_post_link( '<div class="previous">' . __( 'Previous Entry: %link', hybrid_get_textdomain() ) . '</div>', '%title' ); ?>
+			<?php next_post_link( '<div class="next">' . __( 'Next Entry: %link', hybrid_get_textdomain() ) . '</div>', '%title' ); ?>
 		</div><!-- .navigation-links -->
 
 	<?php elseif ( !is_singular() && current_theme_supports( 'loop-pagination' ) ) : loop_pagination(); ?>

@@ -10,7 +10,7 @@
  * For more information on how WordPress handles 404 errors:
  * @link http://codex.wordpress.org/Creating_an_Error_404_Page
  *
- * @package News
+ * @package Prototype
  * @subpackage Template
  */
 
@@ -26,31 +26,21 @@ get_header(); ?>
 
 		<div class="hfeed">
 
-			<?php if ( is_active_sidebar( 'error-404-template' ) ) : ?>
+			<div id="post-0" class="<?php hybrid_entry_class(); ?>">
 
-				<div id="sidebar-error-404" class="sidebar utility">
-					<?php dynamic_sidebar( 'error-404-template' ); ?>
-				</div><!-- #sidebar-error-404 .utility -->
+				<h1 class="error-404-title entry-title"><?php _e( 'Not Found', hybrid_get_textdomain() ); ?></h1>
 
-			<?php else: ?>
+				<div class="entry-content">
 
-				<div id="post-0" class="<?php hybrid_entry_class(); ?>">
+					<p>
+					<?php printf( __( 'You tried going to %1$s, and it doesn\'t exist. All is not lost! You can search for what you\'re looking for.', hybrid_get_textdomain() ), '<code>' . site_url( esc_url( $_SERVER['REQUEST_URI'] ) ) . '</code>' ); ?>
+					</p>
 
-					<h1 class="error-404-title entry-title"><?php _e( 'Not Found', hybrid_get_textdomain() ); ?></h1>
+					<?php get_search_form(); ?>
 
-					<div class="entry-content">
+				</div><!-- .entry-content -->
 
-						<p>
-						<?php printf( __( 'You tried going to %1$s, and it doesn\'t exist. All is not lost! You can search for what you\'re looking for.', hybrid_get_textdomain() ), '<code>' . site_url( esc_url( $_SERVER['REQUEST_URI'] ) ) . '</code>' ); ?>
-						</p>
-
-						<?php get_search_form(); ?>
-
-					</div><!-- .entry-content -->
-
-				</div><!-- .hentry -->
-
-			<?php endif; ?>
+			</div><!-- .hentry -->
 
 		</div><!-- .hfeed -->
 

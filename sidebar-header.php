@@ -9,12 +9,12 @@
  * @subpackage Template
  */
 
-if ( is_active_sidebar( 'after-singular' ) ) : ?>
+if ( is_active_sidebar( 'header' ) ) : ?>
 
-	<div id="sidebar-after-singular" class="sidebar utility">
+	<div id="sidebar-header" class="sidebar utility">
 
-		<?php dynamic_sidebar( 'after-singular' ); ?>
+		<?php dynamic_sidebar( 'header' ); ?>
 
-	</div><!-- #sidebar-after-singular .utility -->
+	</div><!-- #sidebar-header .utility -->
 
 <?php endif; ?>

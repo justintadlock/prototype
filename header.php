@@ -7,7 +7,7 @@
  * wrapper, which is closed with the footer.php file. It also executes key functions needed
  * by the theme, child themes, and plugins. 
  *
- * @package News
+ * @package Prototype
  * @subpackage Template
  */
 
@@ -25,9 +25,9 @@ hybrid_doctype(); ?>
 
 <body class="<?php hybrid_body_class(); ?>">
 
-	<?php do_atomic( 'before_html' ); // Before HTML hook ?>
+	<?php do_atomic( 'open_body' ); // Open body hook ?>
 
-	<div id="body-container">
+	<div id="container">
 
 		<?php do_atomic( 'before_header' ); // Before header hook ?>
 
@@ -47,10 +47,10 @@ hybrid_doctype(); ?>
 
 		<?php do_atomic( 'after_header' ); // After header hook ?>
 
-		<?php do_atomic( 'before_container' ); // Before container hook ?>
+		<?php do_atomic( 'before_main' ); // Before main hook ?>
 
-		<div id="container">
+		<div id="main">
 
 			<div class="wrap">
 
-			<?php do_atomic( 'open_container' ); // Open container hook ?>
+			<?php do_atomic( 'open_main' ); // Open main hook ?>
