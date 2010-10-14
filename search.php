@@ -31,7 +31,7 @@ get_header(); ?>
 
 						<?php do_atomic( 'open_entry' ); // Open loop hook ?>
 
-						<?php if ( current_theme_supports( 'get-the-image' ) ) get_the_image( array( 'meta_key' => array( 'Thumbnail' ), 'size' => 'news-thumbnail' ) ); ?>
+						<?php if ( current_theme_supports( 'get-the-image' ) ) get_the_image( array( 'meta_key' => array( 'Thumbnail' ), 'size' => 'thumbnail' ) ); ?>
 
 						<?php echo apply_atomic_shortcode( 'entry_title', '[entry-title]' ); ?>
 

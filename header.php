@@ -10,15 +10,17 @@
  * @package Prototype
  * @subpackage Template
  */
+?>
+<!DOCTYPE html>
+<html <?php language_attributes(); ?>>
+<head>
 
-hybrid_doctype(); ?>
-<html xmlns="http://www.w3.org/1999/xhtml" <?php language_attributes( 'xhtml' ); ?>>
-<head profile="<?php hybrid_profile_uri(); ?>">
+<meta http-equiv="Content-Type" content="<?php bloginfo( 'html_type' ); ?>; charset=<?php bloginfo( 'charset' ); ?>" />
+
 <title><?php hybrid_document_title(); ?></title>
 
-<link rel="stylesheet" href="<?php echo get_stylesheet_uri(); ?>" type="text/css" media="screen" />
+<link rel="stylesheet" href="<?php echo get_stylesheet_uri(); ?>" type="text/css" media="all" />
 
-<?php do_atomic( 'head' ); // Head hook ?>
 <?php wp_head(); // WP head hook ?>
 
 </head>
@@ -29,6 +31,8 @@ hybrid_doctype(); ?>
 
 	<div id="container">
 
+		<?php get_template_part( 'menu', 'primary' ); ?>
+
 		<?php do_atomic( 'before_header' ); // Before header hook ?>
 
 		<div id="header">
@@ -36,6 +40,10 @@ hybrid_doctype(); ?>
 			<?php do_atomic( 'open_header' ); // Open header hook ?>
 
 			<div class="wrap">
+
+				<?php hybrid_site_title(); ?>
+				<?php hybrid_site_description(); ?>
+				<?php get_sidebar( 'header' ); ?>
 
 				<?php do_atomic( 'header' ); // Header hook ?>
 
@@ -46,6 +54,8 @@ hybrid_doctype(); ?>
 		</div><!-- #header -->
 
 		<?php do_atomic( 'after_header' ); // After header hook ?>
+
+		<?php get_template_part( 'menu', 'secondary' ); ?>
 
 		<?php do_atomic( 'before_main' ); // Before main hook ?>
 

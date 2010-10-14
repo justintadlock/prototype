@@ -29,11 +29,7 @@ get_header(); ?>
 
 						<?php do_atomic( 'open_entry' ); // Open loop hook ?>
 
-						<?php echo apply_atomic_shortcode( 'entry_utility', '<div class="entry-utility">' . __( '[entry-print-link] [entry-email-link] [entry-popup-shortlink]', hybrid_get_textdomain() ) . '</div>' ); ?>
-
 						<?php echo apply_atomic_shortcode( 'entry_title', '[entry-title]' ); ?>
-
-						<?php echo apply_atomic_shortcode( 'byline', '<div class="byline">' . __( 'By [entry-author] on [entry-published] [entry-terms taxonomy="category" before=" in "] [entry-edit-link before=" | "]', hybrid_get_textdomain() ) . '</div>' ); ?>
 
 						<div class="entry-content">
 							<?php if ( wp_attachment_is_image( get_the_ID() ) ) : ?>
@@ -55,8 +51,6 @@ get_header(); ?>
 							<?php the_content( __( 'Continue reading <span class="meta-nav">&rarr;</span>', hybrid_get_textdomain() ) ); ?>
 							<?php wp_link_pages( array( 'before' => '<p class="page-links">' . __( 'Pages:', hybrid_get_textdomain() ), 'after' => '</p>' ) ); ?>
 						</div><!-- .entry-content -->
-
-						<?php echo apply_atomic_shortcode( 'entry_meta', '<div class="entry-meta">' . __( '<span class="share">Share this on:</span> [entry-mixx-link] [entry-delicious-link] [entry-digg-link] [entry-facebook-link] [entry-twitter-link]', hybrid_get_textdomain() ) . '</div>' ); ?>
 
 						<?php do_atomic( 'close_loop' ); // Close loop hook ?>
 

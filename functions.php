@@ -13,7 +13,7 @@
  */
 
 /* Load the core theme framework. */
-require_once( TEMPLATEPATH . '/library/classes/hybrid.php' );
+require_once( TEMPLATEPATH . '/library/hybrid.php' );
 $theme = new Hybrid();
 
 /* Do theme setup on the 'after_setup_theme' hook. */
@@ -36,17 +36,20 @@ function prototype_theme_setup() {
 	add_theme_support( 'hybrid-core-widgets' );
 	add_theme_support( 'hybrid-core-shortcodes' );
 	add_theme_support( 'hybrid-core-post-meta-box' );
+	add_theme_support( 'hybrid-core-theme-settings' );
 	add_theme_support( 'hybrid-core-meta-box-footer' );
 	add_theme_support( 'hybrid-core-drop-downs' );
-	add_theme_support( 'hybrid-core-print-style' );
 	add_theme_support( 'hybrid-core-seo' );
+	add_theme_support( 'hybrid-core-template-hierarchy' );
 
 	/* Add theme support for extensions. */
 	add_theme_support( 'post-layouts' );
+	add_theme_support( 'post-stylesheets' );
 	add_theme_support( 'loop-pagination' );
 	add_theme_support( 'get-the-image' );
-	add_theme_support( 'entry-views' );
 	add_theme_support( 'breadcrumb-trail' );
+
+	add_theme_support( 'automatic-feed-links' );
 
 	/* Allow users to upload a custom background. */
 	add_custom_background();
@@ -58,30 +61,15 @@ function prototype_theme_setup() {
 	add_action( 'init', 'prototype_unregister_sidebars' );
 	add_action( 'init', 'prototype_register_sidebars' );
 
-	/* Add site title and description to the header. */
-	add_action( "{$prefix}_header", 'prototype_sidebar_header' );
-	add_action( "{$prefix}_header", 'hybrid_site_title' );
-	add_action( "{$prefix}_header", 'hybrid_site_description' );
-
 	/* Add the breadcrumb trail just after the container is open. */
-	add_action( "{$prefix}_open_container", 'breadcrumb_trail' );
-
-	/* Add menus to specific locations. */
-	add_action( "{$prefix}_before_header", 'hybrid_get_primary_menu' );
-	add_action( "{$prefix}_after_header", 'prototype_menu_secondary' );
-	add_action( "{$prefix}_before_footer", 'prototype_menu_subsidiary' );
-
-	/* Add subisidiary sidebar before the footer. */
-	add_action( "{$prefix}_before_footer", 'prototype_sidebar_subsidiary' );
-
-	/* Add the footer text to the footer. */
-	add_action( "{$prefix}_footer", 'hybrid_footer_insert' );
+	add_action( "{$prefix}_open_main", 'breadcrumb_trail' );
 
 	/* Embed width/height defaults. */
 	add_filter( 'embed_defaults', 'prototype_embed_defaults' );
 
 	/* Filter the sidebar widgets. */
 	add_filter( 'sidebars_widgets', 'prototype_disable_sidebars' );
+	add_action( 'template_redirect', 'prototype_one_column' );
 
 	/* Filter the breadcrumb trail arguments. */
 	add_filter( 'breadcrumb_trail_args', 'prototype_breadcrumb_trail_args' );
@@ -99,31 +87,33 @@ function prototype_breadcrumb_trail_args( $args ) {
 	return $args;
 }
 
+function prototype_one_column() {
+
+	if ( !is_active_sidebar( 'primary' ) && !is_active_sidebar( 'secondary' ) )
+		add_filter( 'get_post_layout', 'prototype_post_layout_one_column' );
+
+	elseif ( is_attachment() )
+		add_filter( 'get_post_layout', 'prototype_post_layout_one_column' );
+}
+
+function prototype_post_layout_one_column( $layout ) {
+	return 'layout-1c';
+}
+
 function prototype_disable_sidebars( $sidebars_widgets ) {
-
-	//if ( current_theme_supports( 'post-layouts' ) && 'layout-1c' == post_layouts_get() ) {
-	//	$sidebars_widgets['primary'] = false;
-	//	$sidebars_widgets['secondary'] = false;
-	//}
-
 	global $wp_query;
 
-	if ( is_singular() ) {
-		$post_id = $wp_query->get_queried_object_id();
+	if ( current_theme_supports( 'post-layouts' ) ) {
 
-		$layout = get_post_meta( $post_id, 'Layout', true );
+		$layout = post_layouts_get_layout();
 
-		if ( '1c' == $layout ) {
+		if ( 'layout-1c' == $layout ) {
 			$sidebars_widgets['primary'] = false;
 			$sidebars_widgets['secondary'] = false;
 		}
 	}
 
 	return $sidebars_widgets;
-}
-
-function prototype_sidebar_subsidiary() {
-	get_sidebar( 'subsidiary' );
 }
 
 function prototype_register_sidebars() {
@@ -133,22 +123,10 @@ function prototype_register_sidebars() {
 function prototype_register_menus() {
 	register_nav_menus(
 		array(
-			'secondary-menu' => __( 'Secondary Menu', hybrid_get_textdomain() ),
-			'subsidiary-menu' => __( 'Subsidiary Menu', hybrid_get_textdomain() )
+			'secondary' => __( 'Secondary Menu', hybrid_get_textdomain() ),
+			'subsidiary' => __( 'Subsidiary Menu', hybrid_get_textdomain() )
 		)
 	);
-}
-
-function prototype_sidebar_header() {
-	get_sidebar( 'header' );
-}
-
-function prototype_menu_secondary() {
-	locate_template( array( 'menu-secondary.php', 'menu.php' ), true );
-}
-
-function prototype_menu_subsidiary() {
-	locate_template( array( 'menu-subsidiary.php', 'menu.php' ), true );
 }
 
 /**
@@ -159,8 +137,18 @@ function prototype_menu_subsidiary() {
  * @since 0.1.0
  */
 function prototype_embed_defaults( $args ) {
-	if ( !is_active_sidebar( 'primary' ) && !is_active_sidebar( 'secondary' ) )
-		$args['width'] = 928;
+
+	if ( current_theme_supports( 'post-layouts' ) ) {
+
+		$layout = post_layouts_get_layout();
+
+		if ( 'layout-3c-l' == $layout || 'layout-3c-r' == $layout || 'layout-3c-c' == $layout )
+			$args['width'] = 500;
+		elseif ( 'layout-1c' == $layout )
+			$args['width'] = 928;
+		else
+			$args['width'] = 600;
+	}
 	else
 		$args['width'] = 600;
 

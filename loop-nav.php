@@ -12,23 +12,23 @@
 
 	<?php if ( is_attachment() ) : ?>
 
-		<div class="loop-nav navigation-links">
+		<div class="loop-nav">
 			<?php previous_post_link( '%link', '<span class="previous">' . __( '&larr; Return to entry', hybrid_get_textdomain() ) . '</span>' ); ?>
-		</div>
+		</div><!-- .loop-nav -->
 
 	<?php elseif ( is_singular( 'post' ) ) : ?>
 
-		<div class="loop-nav navigation-links">
+		<div class="loop-nav">
 			<?php previous_post_link( '<div class="previous">' . __( 'Previous Entry: %link', hybrid_get_textdomain() ) . '</div>', '%title' ); ?>
 			<?php next_post_link( '<div class="next">' . __( 'Next Entry: %link', hybrid_get_textdomain() ) . '</div>', '%title' ); ?>
-		</div><!-- .navigation-links -->
+		</div><!-- .loop-nav -->
 
 	<?php elseif ( !is_singular() && current_theme_supports( 'loop-pagination' ) ) : loop_pagination(); ?>
 
 	<?php elseif ( !is_singular() && $nav = get_posts_nav_link( array( 'sep' => '', 'prelabel' => '<span class="previous">' . __( '&larr; Previous', hybrid_get_textdomain() ) . '</span>', 'nxtlabel' => '<span class="next">' . __( 'Next &rarr;', hybrid_get_textdomain() ) . '</span>' ) ) ) : ?>
 
-		<div class="loop-nav navigation-links">
+		<div class="loop-nav">
 			<?php echo $nav; ?>
-		</div><!-- .navigation-links -->
+		</div><!-- .loop-nav -->
 
 	<?php endif; ?>
