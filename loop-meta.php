@@ -10,7 +10,21 @@
  */
 ?>
 
-	<?php if ( is_category() ) : ?>
+	<?php if ( is_home() && !is_front_page() ) : ?>
+
+		<?php global $wp_query; ?>
+
+		<div class="loop-meta">
+
+			<h1 class="loop-title"><?php echo get_post_field( 'post_title', $wp_query->get_queried_object_id() ); ?></h1>
+
+			<div class="loop-description">
+				<?php echo apply_filters( 'the_excerpt', get_post_field( 'post_excerpt', $wp_query->get_queried_object_id() ) ); ?>
+			</div><!-- .loop-description -->
+
+		</div><!-- .loop-meta -->
+
+	<?php elseif ( is_category() ) : ?>
 
 		<div class="loop-meta">
 
@@ -87,6 +101,20 @@
 				<p>
 				<?php _e( 'You are browsing the site archives by date.', hybrid_get_textdomain() ); ?>
 				</p>
+			</div><!-- .loop-description -->
+
+		</div><!-- .loop-meta -->
+
+	<?php elseif ( is_archive() && get_query_var( 'post_type' ) ) : ?>
+
+		<?php $post_type = get_post_type_object( get_query_var( 'post_type' ) ); ?>
+
+		<div class="loop-meta">
+
+			<h1 class="loop-title"><?php echo $post_type->labels->name; ?></h1>
+
+			<div class="loop-description">
+				<?php if ( !empty( $post_type->description ) ) echo "<p>{$post_type->description}</p>"; ?>
 			</div><!-- .loop-description -->
 
 		</div><!-- .loop-meta -->

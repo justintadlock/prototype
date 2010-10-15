@@ -23,13 +23,11 @@ get_header(); ?>
 
 				<?php while ( have_posts() ) : the_post(); ?>
 
-					<?php do_atomic( 'before_loop' ); // Before loop hook ?>
+					<?php do_atomic( 'before_entry' ); // Before entry hook ?>
 
 					<div id="post-<?php the_ID(); ?>" class="<?php hybrid_entry_class(); ?>">
 
-						<?php do_atomic( 'open_loop' ); // Open loop hook ?>
-
-						<?php //echo apply_atomic_shortcode( 'entry_utility', '<div class="entry-utility">' . __( '[entry-print-link] [entry-email-link] [entry-popup-shortlink]', hybrid_get_textdomain() ) . '</div>' ); ?>
+						<?php do_atomic( 'open_entry' ); // Open entry hook ?>
 
 						<?php echo apply_atomic( 'entry_title', the_title( '<h1 class="entry-title"><a href="' . get_permalink() . '" title="' . the_title_attribute( 'echo=0' ) . '" rel="bookmark">', '</a></h1>', false ) ); ?>
 
@@ -42,11 +40,11 @@ get_header(); ?>
 
 						<?php echo apply_atomic_shortcode( 'entry_meta', '<div class="entry-meta">' . __( '[entry-terms taxonomy="category" before="Posted in "] [entry-terms taxonomy="post_tag" before="| Tagged "]', hybrid_get_textdomain() ) . '</div>' ); ?>
 
-						<?php do_atomic( 'close_loop' ); // Close loop hook ?>
+						<?php do_atomic( 'close_entry' ); // Close entry hook ?>
 
 					</div><!-- .hentry -->
 
-					<?php do_atomic( 'after_loop' ); // After loop hook ?>
+					<?php do_atomic( 'after_entry' ); // After entry hook ?>
 
 					<?php get_sidebar( 'after-singular' ); ?>
 

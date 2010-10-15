@@ -51,10 +51,6 @@ get_header(); ?>
 
 				<?php endwhile; ?>
 
-			<?php else : // No posts found ?>
-
-				<?php get_template_part( 'loop-error' ); ?>
-
 			<?php endif; ?>
 
 		</div><!-- .hfeed -->

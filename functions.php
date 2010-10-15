@@ -45,13 +45,13 @@ function prototype_theme_setup() {
 	/* Add theme support for extensions. */
 	add_theme_support( 'post-layouts' );
 	add_theme_support( 'post-stylesheets' );
+	add_theme_support( 'dev-stylesheet' );
 	add_theme_support( 'loop-pagination' );
 	add_theme_support( 'get-the-image' );
 	add_theme_support( 'breadcrumb-trail' );
 
+	/* Add theme support for WordPress features. */
 	add_theme_support( 'automatic-feed-links' );
-
-	/* Allow users to upload a custom background. */
 	add_custom_background();
 
 	/* Register menus. */
@@ -75,18 +75,35 @@ function prototype_theme_setup() {
 	add_filter( 'breadcrumb_trail_args', 'prototype_breadcrumb_trail_args' );
 }
 
+/**
+ * Unregisters some of the core framework sidebars that the theme doesn't use.
+ *
+ * @since 0.1.0
+ */
 function prototype_unregister_sidebars() {
 	unregister_sidebar( 'before-content' );
 	unregister_sidebar( 'after-content' );
 }
 
+/**
+ * Custom breadcrumb trail arguments.
+ *
+ * @since 0.1.0
+ */
 function prototype_breadcrumb_trail_args( $args ) {
 
+	/* Change the text before the breadcrumb trail. */
 	$args['before'] = __( 'You are here:', hybrid_get_textdomain() );
 
+	/* Return the filtered arguments. */
 	return $args;
 }
 
+/**
+ * Function for deciding which pages should have a one-column layout.
+ *
+ * @since 0.1.0
+ */
 function prototype_one_column() {
 
 	if ( !is_active_sidebar( 'primary' ) && !is_active_sidebar( 'secondary' ) )
@@ -96,18 +113,26 @@ function prototype_one_column() {
 		add_filter( 'get_post_layout', 'prototype_post_layout_one_column' );
 }
 
+/**
+ * Filters 'get_post_layout' by returning 'layout-1c'.
+ *
+ * @since 0.1.0
+ */
 function prototype_post_layout_one_column( $layout ) {
 	return 'layout-1c';
 }
 
+/**
+ * Disables sidebars if viewing a one-column page.
+ *
+ * @since 0.1.0
+ */
 function prototype_disable_sidebars( $sidebars_widgets ) {
 	global $wp_query;
 
 	if ( current_theme_supports( 'post-layouts' ) ) {
 
-		$layout = post_layouts_get_layout();
-
-		if ( 'layout-1c' == $layout ) {
+		if ( 'layout-1c' == post_layouts_get_layout() ) {
 			$sidebars_widgets['primary'] = false;
 			$sidebars_widgets['secondary'] = false;
 		}
@@ -116,10 +141,20 @@ function prototype_disable_sidebars( $sidebars_widgets ) {
 	return $sidebars_widgets;
 }
 
+/**
+ * Registers new sidebars for the theme.
+ *
+ * @since 0.1.0.
+ */
 function prototype_register_sidebars() {
 	register_sidebar( array( 'name' => __( 'Header', hybrid_get_textdomain() ), 'id' => 'header', 'description' => __( 'Displayed in the header area.', hybrid_get_textdomain() ), 'before_widget' => '<div id="%1$s" class="widget %2$s widget-%2$s"><div class="widget-inside">', 'after_widget' => '</div></div>', 'before_title' => '<h3 class="widget-title">', 'after_title' => '</h3>' ) );
 }
 
+/**
+ * Registers new nav menus for the theme.
+ *
+ * @since 0.1.0
+ */
 function prototype_register_menus() {
 	register_nav_menus(
 		array(

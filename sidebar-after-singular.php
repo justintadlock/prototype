@@ -11,10 +11,10 @@
 
 if ( is_active_sidebar( 'after-singular' ) ) : ?>
 
-	<div id="sidebar-after-singular" class="sidebar utility">
+	<div id="sidebar-after-singular" class="sidebar">
 
 		<?php dynamic_sidebar( 'after-singular' ); ?>
 
-	</div><!-- #sidebar-after-singular .utility -->
+	</div><!-- #sidebar-after-singular -->
 
 <?php endif; ?>
