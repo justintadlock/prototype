@@ -316,12 +316,17 @@ body {
 	}
 
 #header {
+	overflow: hidden;
 	clear: both;
 	width: 928px;
 	margin: 0 auto;
 	padding: 25px;
 	background: #fff;
 	border: 1px solid #dfdfdf;
+	}
+#branding {
+	float: left;
+	width: 440px;
 	}
 #site-title {
 	font: normal normal bold 25px/25px Arial, Verdana, sans-serif;

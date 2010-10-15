@@ -41,8 +41,11 @@
 
 			<div class="wrap">
 
-				<?php hybrid_site_title(); ?>
-				<?php hybrid_site_description(); ?>
+				<div id="branding">
+					<?php hybrid_site_title(); ?>
+					<?php hybrid_site_description(); ?>
+				</div>
+
 				<?php get_sidebar( 'header' ); ?>
 
 				<?php do_atomic( 'header' ); // Header hook ?>
