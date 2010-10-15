@@ -46,6 +46,33 @@ h6 { font-size: 15px; }
 .entry-content h5 { line-height: 17px; border-color: #e3e3e3; }
 .entry-content h6 { line-height: 15px; border-color: #e5e5e5; }
 
+/* Tables */
+table {
+	margin: 0 0 25px 0;
+	width: 100%;
+	border-left: 1px solid #e0e0e0;
+	border-right: 1px solid #e0e0e0;
+	background: #fff;
+	}
+table caption {
+	font: normal normal normal 13px/25px Arial, Verdana, sans-serif;
+	color: #999;
+	}
+table th {
+	font: normal normal bold 13px/25px Arial, Verdana, sans-serif;
+	padding: 4px 2%;
+	border-top:1px solid #e0e0e0;
+	border-bottom: 1px solid #e0e0e0;
+	border-right: 1px solid #e0e0e0;
+	text-align: left;
+	}
+td {
+	padding: 4px 2%;
+	color: #444;
+	border-bottom: 1px solid #e0e0e0;
+	border-right: 1px solid #e0e0e0;
+	}
+
 acronym {
 	font-size: .9em;
 	text-transform: uppercase;
@@ -408,8 +435,8 @@ body {
 	margin-bottom: 25px;
 	}
 .breadcrumbs a {
-	color: #555;
-	border-bottom: 1px dotted #999;
+	color: #777;
+	border-bottom: 1px dotted #aaa;
 	}
 .breadcrumbs a:hover {
 	color: #000;
@@ -431,11 +458,6 @@ body {
 	}
 
 #content {
-	float: left;
-	width: 600px;
-	}
-.primary-inactive.secondary-inactive #content {
-	width: 928px;
 	}
 
 .hentry {
@@ -566,7 +588,7 @@ body {
 	}
 .page-links a {
 	display: inline-block;
-	padding: 9px 12px;
+	padding: 8px 11px;
 	margin: 0 5px 0 5px;
 	color: #aaa;
 	border: 1px solid #dfdfdf;
@@ -579,7 +601,7 @@ body {
 
 .pagination .page-numbers {
 	display: inline-block;
-	padding: 9px 12px;
+	padding: 8px 11px;
 	margin: 0 10px 0 0;
 	font: normal normal bold 13px/13px Arial, Verdana, sans-serif;
 	color: #333;
@@ -625,16 +647,10 @@ body {
 
 
 #sidebar-primary {
-	float: right;
-	width: 250px;
 	font-size: 14px;
 	color: #333;
 	}
 #sidebar-secondary {
-	clear: right;
-	float: right;
-	width: 200px;
-	padding: 25px;
 	font-size: 14px;
 	color: #444;
 	border: 1px solid #dfdfdf;
@@ -717,17 +733,23 @@ body {
 #respond {
 	overflow: hidden;
 	}
+.comment-list #respond {
+	margin-top: 25px;
+	}
 #respond .log-in-out {
 	font-size: 15px;
-	color: #999;
+	color: #777;
 	}
 #respond .log-in-out a {
 	font-style: italic;
 	}
+#reply-title small a {
+	font: italic normal normal 14px/25px Georgia, Times, 'Times New Roman', serif;
+	}
 
 #respond label {
 	font: normal normal normal 13px/25px Arial, Verdana, sans-serif;
-	color: #aaa;
+	color: #bbb;
 	}
 #respond p.req label {
 	color: #888;
@@ -735,7 +757,7 @@ body {
 #respond span.required {
 	font-size: 16px;
 	font-weight: bold;
-	color: #668c9c;
+	color: #000;
 	}
 #respond #submit {
 	float: right;
@@ -844,15 +866,35 @@ body {
 .layout-1c #content {
 	width: 928px;
 	}
+
+.layout-2c-l #content, .layout-default #content {
+	float: left;
+	width: 600px;
+	}
+.layout-2c-l #sidebar-primary, .layout-default #sidebar-primary {
+	float: right;
+	width: 270px;
+	}
+.layout-2c-l #sidebar-secondary, .layout-default #sidebar-secondary {
+	clear: right;
+	float: right;
+	width: 220px;
+	padding: 25px;
+	}
+
 .layout-2c-r #content {
 	float: right;
+	width: 600px;
 	}
 .layout-2c-r #sidebar-primary {
 	float: left;
+	width: 270px;
 	}
 .layout-2c-r #sidebar-secondary {
 	float: left;
 	clear: left;
+	width: 220px;
+	padding: 25px;
 	}
 
 .layout-3c-l #content {

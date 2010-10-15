@@ -105,7 +105,7 @@
 
 		</div><!-- .loop-meta -->
 
-	<?php elseif ( is_archive() && get_query_var( 'post_type' ) ) : ?>
+	<?php elseif ( function_exists( 'is_post_type_archive' ) && is_post_type_archive() ) : ?>
 
 		<?php $post_type = get_post_type_object( get_query_var( 'post_type' ) ); ?>
 
