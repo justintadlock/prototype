@@ -8,12 +8,27 @@
  * Child themes should do their setup on the 'after_setup_theme' hook with a priority of 11 if they want to
  * override parent theme features.  Use a priority of 9 if wanting to run before the parent theme.
  *
+ * This program is free software; you can redistribute it and/or modify it under the terms of the GNU 
+ * General Public License version 2, as published by the Free Software Foundation.  You may NOT assume 
+ * that you can use any other version of the GPL.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without 
+ * even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *
+ * You should have received a copy of the GNU General Public License along with this program; if not, write 
+ * to the Free Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
+ *
  * @package Prototype
  * @subpackage Functions
+ * @version 0.1.0
+ * @author Justin Tadlock <justin@justintadlock.com>
+ * @copyright Copyright (c) 2010, Justin Tadlock
+ * @link http://themehybrid.com/themes/prototype
+ * @license http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
  */
 
 /* Load the core theme framework. */
-require_once( TEMPLATEPATH . '/library/hybrid.php' );
+require_once( trailingslashit( TEMPLATEPATH ) . 'library/hybrid.php' );
 $theme = new Hybrid();
 
 /* Do theme setup on the 'after_setup_theme' hook. */
@@ -42,7 +57,7 @@ function prototype_theme_setup() {
 	add_theme_support( 'hybrid-core-seo' );
 	add_theme_support( 'hybrid-core-template-hierarchy' );
 
-	/* Add theme support for extensions. */
+	/* Add theme support for framework extensions. */
 	add_theme_support( 'post-layouts' );
 	add_theme_support( 'post-stylesheets' );
 	add_theme_support( 'dev-stylesheet' );
@@ -58,11 +73,17 @@ function prototype_theme_setup() {
 	add_action( 'init', 'prototype_register_menus' );
 
 	/* Register sidebars. */
-	add_action( 'init', 'prototype_unregister_sidebars' );
-	add_action( 'init', 'prototype_register_sidebars' );
+	add_action( 'widgets_init', 'prototype_register_sidebars' );
+	add_action( 'widgets_init', 'prototype_unregister_sidebars', 11 );
 
 	/* Add the breadcrumb trail just after the container is open. */
 	add_action( "{$prefix}_open_main", 'breadcrumb_trail' );
+
+	/* Filter the breadcrumb trail arguments. */
+	add_filter( 'breadcrumb_trail_args', 'prototype_breadcrumb_trail_args' );
+
+	/* Add the search form to the secondary menu. */
+	add_action( "{$prefix}_close_menu_secondary", 'get_search_form' );
 
 	/* Embed width/height defaults. */
 	add_filter( 'embed_defaults', 'prototype_embed_defaults' );
@@ -70,9 +91,6 @@ function prototype_theme_setup() {
 	/* Filter the sidebar widgets. */
 	add_filter( 'sidebars_widgets', 'prototype_disable_sidebars' );
 	add_action( 'template_redirect', 'prototype_one_column' );
-
-	/* Filter the breadcrumb trail arguments. */
-	add_filter( 'breadcrumb_trail_args', 'prototype_breadcrumb_trail_args' );
 }
 
 /**
@@ -144,7 +162,7 @@ function prototype_disable_sidebars( $sidebars_widgets ) {
 /**
  * Registers new sidebars for the theme.
  *
- * @since 0.1.0.
+ * @since 0.1.0
  */
 function prototype_register_sidebars() {
 	register_sidebar( array( 'name' => __( 'Header', hybrid_get_textdomain() ), 'id' => 'header', 'description' => __( 'Displayed in the header area.', hybrid_get_textdomain() ), 'before_widget' => '<div id="%1$s" class="widget %2$s widget-%2$s"><div class="widget-inside">', 'after_widget' => '</div></div>', 'before_title' => '<h3 class="widget-title">', 'after_title' => '</h3>' ) );

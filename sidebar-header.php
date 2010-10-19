@@ -2,6 +2,8 @@
 /**
  * Sidebar Header Template
  *
+ * Displays any widgets for the Header dynamic sidebar if they are available.
+ *
  * @package Prototype
  * @subpackage Template
  */

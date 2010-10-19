@@ -71,9 +71,9 @@
 			<div class="loop-description">
 				<?php echo get_avatar( get_the_author_meta( 'user_email', $id ), '100', '', get_the_author_meta( 'display_name', $id ) ); ?>
 
-				<div class="user-bio author-bio">
+				<p class="user-bio">
 					<?php the_author_meta( 'description', $id ); ?>
-				</div><!-- .user-bio .author-bio -->
+				</p><!-- .user-bio -->
 			</div><!-- .loop-description -->
 
 		</div><!-- .loop-meta -->

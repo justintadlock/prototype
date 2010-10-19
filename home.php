@@ -1,9 +1,9 @@
 <?php
 /**
- * Search Template
+ * Home Template
  *
- * The search template is loaded when a visitor uses the search form to search for something
- * on the site.
+ * This is the home template.  Technically, it is the "posts page" template.  It is used when a visitor is on the 
+ * page assigned to show a site's latest blog posts.
  *
  * @package Prototype
  * @subpackage Template

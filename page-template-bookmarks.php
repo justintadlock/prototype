@@ -1,9 +1,8 @@
 <?php
 /**
- * Singular Template
+ * Template Name: Bookmarks
  *
- * This is the default singular template.  It is used when a more specific template can't be found to display
- * singular views of posts (any post type).
+ * A custom page template for displaying the site's bookmarks/links.
  *
  * @package Prototype
  * @subpackage Template
@@ -31,12 +30,27 @@ get_header(); // Loads the header.php template. ?>
 
 						<?php echo apply_atomic( 'entry_title', the_title( '<h1 class="entry-title"><a href="' . get_permalink() . '" title="' . the_title_attribute( 'echo=0' ) . '" rel="bookmark">', '</a></h1>', false ) ); ?>
 
-						<?php echo apply_atomic_shortcode( 'byline', '<div class="byline">' . __( 'By [entry-author] on [entry-published] [entry-edit-link before=" | "]', hybrid_get_textdomain() ) . '</div>' ); ?>
-
 						<div class="entry-content">
 							<?php the_content( __( 'Continue reading <span class="meta-nav">&rarr;</span>', hybrid_get_textdomain() ) ); ?>
+
+							<?php $args = array(
+								'title_li' => false,
+								'title_before' => '<h2>',
+								'title_after' => '</h2>',
+								'category_before' => false,
+								'category_after' => false,
+								'categorize' => true,
+								'show_description' => true,
+								'between' => '<br />',
+								'show_images' => false,
+								'show_rating' => false,
+							); ?>
+							<?php wp_list_bookmarks( $args ); ?>
+
 							<?php wp_link_pages( array( 'before' => '<p class="page-links">' . __( 'Pages:', hybrid_get_textdomain() ), 'after' => '</p>' ) ); ?>
 						</div><!-- .entry-content -->
+
+						<?php echo apply_atomic_shortcode( 'entry_meta', '<div class="entry-meta">[entry-edit-link]</div>' ); ?>
 
 						<?php do_atomic( 'close_entry' ); // prototype_close_entry ?>
 
@@ -57,8 +71,6 @@ get_header(); // Loads the header.php template. ?>
 		</div><!-- .hfeed -->
 
 		<?php do_atomic( 'close_content' ); // prototype_close_content ?>
-
-		<?php get_template_part( 'loop-nav' ); // Loads the loop-nav.php template. ?>
 
 	</div><!-- #content -->
 

@@ -9,13 +9,13 @@
  * @subpackage Template
  */
 
-get_header(); ?>
+get_header(); // Loads the header.php template. ?>
 
-	<?php do_atomic( 'before_content' ); // Before content hook ?>
+	<?php do_atomic( 'before_content' ); // prototype_before_content ?>
 
 	<div id="content">
 
-		<?php do_atomic( 'open_content' ); // Open content hook ?>
+		<?php do_atomic( 'open_content' ); // prototype_open_content ?>
 
 		<div class="hfeed">
 
@@ -23,11 +23,11 @@ get_header(); ?>
 
 				<?php while ( have_posts() ) : the_post(); ?>
 
-					<?php do_atomic( 'before_entry' ); // Before loop hook ?>
+					<?php do_atomic( 'before_entry' ); // prototype_before_entry ?>
 
 					<div id="post-<?php the_ID(); ?>" class="<?php hybrid_entry_class(); ?>">
 
-						<?php do_atomic( 'open_entry' ); // Open loop hook ?>
+						<?php do_atomic( 'open_entry' ); // prototype_open_entry ?>
 
 						<?php echo apply_atomic_shortcode( 'entry_title', '[entry-title]' ); ?>
 
@@ -35,12 +35,12 @@ get_header(); ?>
 							<?php if ( wp_attachment_is_image( get_the_ID() ) ) : ?>
 
 								<p class="attachment-image">
-									<img class="aligncenter" src="<?php echo wp_get_attachment_url(); ?>" alt="<?php the_title_attribute(); ?>" title="<?php the_title_attribute(); ?>" />
+									<?php echo wp_get_attachment_image( get_the_ID(), 'full', false, array( 'class' => 'aligncenter' ) ); ?>
 								</p><!-- .attachment-image -->
 
 							<?php else : ?>
 
-								<?php hybrid_attachment(); ?>
+								<?php hybrid_attachment(); // Function for handling non-image attachments. ?>
 
 								<p class="download">
 									<a href="<?php echo wp_get_attachment_url(); ?>" title="<?php the_title_attribute(); ?>" rel="enclosure" type="<?php echo get_post_mime_type(); ?>"><?php printf( __( 'Download &quot;%1$s&quot;', hybrid_get_textdomain() ), the_title( '<span class="fn">', '</span>', false) ); ?></a>
@@ -52,17 +52,19 @@ get_header(); ?>
 							<?php wp_link_pages( array( 'before' => '<p class="page-links">' . __( 'Pages:', hybrid_get_textdomain() ), 'after' => '</p>' ) ); ?>
 						</div><!-- .entry-content -->
 
-						<?php do_atomic( 'close_loop' ); // Close loop hook ?>
+						<?php if ( wp_attachment_is_image( get_the_ID() ) ) echo do_shortcode( sprintf( '[gallery id="%1$s" exclude="%2$s" columns="8"]', $post->post_parent, get_the_ID() ) ); ?>
+
+						<?php do_atomic( 'close_entry' ); // prototype_close_entry ?>
 
 					</div><!-- .hentry -->
 
-					<?php do_atomic( 'after_entry' ); // After loop hook ?>
+					<?php do_atomic( 'after_entry' ); // prototype_after_entry ?>
 
-					<?php get_sidebar( 'after-singular' ); ?>
+					<?php get_sidebar( 'after-singular' ); // Loads the sidebar-after-singular.php template. ?>
 
-					<?php do_atomic( 'after_singular' ); // After singular hook ?>
+					<?php do_atomic( 'after_singular' ); // prototype_after_singular ?>
 
-					<?php comments_template( '/comments.php', true ); ?>
+					<?php comments_template( '/comments.php', true ); // Loads the comments.php template. ?>
 
 				<?php endwhile; ?>
 
@@ -70,12 +72,12 @@ get_header(); ?>
 
 		</div><!-- .hfeed -->
 
-		<?php do_atomic( 'close_content' ); // Close content hook ?>
+		<?php do_atomic( 'close_content' ); // prototype_close_content ?>
 
-		<?php get_template_part( 'loop-nav' ); ?>
+		<?php get_template_part( 'loop-nav' ); // Loads the loop-nav.php template. ?>
 
 	</div><!-- #content -->
 
-	<?php do_atomic( 'after_content' ); // After content hook ?>
+	<?php do_atomic( 'after_content' ); // prototype_after_content ?>
 
-<?php get_footer(); ?>
+<?php get_footer(); // Loads the footer.php template. ?>

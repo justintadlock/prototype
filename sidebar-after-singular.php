@@ -2,8 +2,7 @@
 /**
  * After Singular Sidebar Template
  *
- * The After Singular sidebar template houses the HTML used for the 'Utility: After Singular' 
- * sidebar.  If widgets are present, they will be displayed.
+ * Displays any widgets for the After Singular dynamic sidebar if they are available.
  *
  * @package Prototype
  * @subpackage Template
