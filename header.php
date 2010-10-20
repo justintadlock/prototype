@@ -13,9 +13,7 @@
 <!DOCTYPE html>
 <html <?php language_attributes(); ?>>
 <head>
-
 <meta http-equiv="Content-Type" content="<?php bloginfo( 'html_type' ); ?>; charset=<?php bloginfo( 'charset' ); ?>" />
-
 <title><?php hybrid_document_title(); ?></title>
 
 <link rel="stylesheet" href="<?php echo get_stylesheet_uri(); ?>" type="text/css" media="all" />

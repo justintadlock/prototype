@@ -49,8 +49,9 @@
 
 	</div><!-- #container -->
 
-	<?php wp_footer(); // wp_footer ?>
 	<?php do_atomic( 'close_body' ); // prototype_close_body ?>
+
+	<?php wp_footer(); // wp_footer ?>
 
 </body>
 </html>

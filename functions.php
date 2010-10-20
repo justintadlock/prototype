@@ -70,10 +70,10 @@ function prototype_theme_setup() {
 	add_custom_background();
 
 	/* Register menus. */
-	add_action( 'init', 'prototype_register_menus' );
+	add_action( 'init', 'prototype_register_menus', 11 );
 
 	/* Register sidebars. */
-	add_action( 'widgets_init', 'prototype_register_sidebars' );
+	add_action( 'widgets_init', 'prototype_register_sidebars', 11 );
 	add_action( 'widgets_init', 'prototype_unregister_sidebars', 11 );
 
 	/* Add the breadcrumb trail just after the container is open. */
@@ -91,6 +91,9 @@ function prototype_theme_setup() {
 	/* Filter the sidebar widgets. */
 	add_filter( 'sidebars_widgets', 'prototype_disable_sidebars' );
 	add_action( 'template_redirect', 'prototype_one_column' );
+
+	/* Filter the comment form defaults. */
+	add_filter( 'comment_form_defaults', 'prototype_comment_form_args', 11 );
 }
 
 /**
@@ -180,6 +183,16 @@ function prototype_register_menus() {
 			'subsidiary' => __( 'Subsidiary Menu', hybrid_get_textdomain() )
 		)
 	);
+}
+
+/**
+ * Creates custom settings for the WordPress comment form.
+ *
+ * @since 0.1.0
+ */
+function prototype_comment_form_args( $args ) {
+	$args['label_submit'] = __( 'Post Comment' ); // Use the default WP translation.
+	return $args;
 }
 
 /**

@@ -29,23 +29,24 @@ h1, h2, h3, h4, h5, h6 {
 	color: #000;
 	font-weight: bold;
 	}
+h1 { font-size: 25px; }
 h2 { font-size: 23px; }
 h3 { font-size: 21px; }
 h4 { font-size: 19px; }
 h5 { font-size: 17px; }
 h6 { font-size: 15px; }
 
+.entry-content h1, .entry-content h2, .entry-content h3, .entry-content h4, .entry-content h5, .entry-content h6 {
+	padding-left: 15px;
+	color: #444;
+	border-left: 5px solid #ddd;
+	}
+.entry-content h1 { line-height: 25px; border-color: #d9d9d9; }
 .entry-content h2 { line-height: 23px; border-color: #ddd; }
 .entry-content h3 { line-height: 21px; border-color: #dfdfdf; }
 .entry-content h4 { line-height: 19px; border-color: #e1e1e1; }
 .entry-content h5 { line-height: 17px; border-color: #e3e3e3; }
 .entry-content h6 { line-height: 15px; border-color: #e5e5e5; }
-
-.entry-content h2, .entry-content h3, .entry-content h4, .entry-content h5, .entry-content h6 {
-	padding-left: 15px;
-	color: #444;
-	border-left: 5px solid #ddd;
-	}
 
 /* Horizontal rule */
 hr {
@@ -80,7 +81,13 @@ td {
 	border-right: 1px solid #e0e0e0;
 	}
 
-/* Acronyms */
+/* Acronyms and abbreviations */
+abbr {
+	border-bottom: 1px dotted #666;
+	}
+.byline abbr, .entry-meta abbr, .comment-meta abbr {
+	border: none;
+	}
 acronym {
 	font-size: .9em;
 	text-transform: uppercase;
@@ -113,7 +120,7 @@ dl dd {
 	}
 
 /* Blockquotes. */
-blockquote {
+blockquote, blockquote blockquote blockquote {
 	overflow: hidden;
 	margin: 0 0 25px 0;
 	padding: 25px 25px 0 25px;
@@ -215,6 +222,14 @@ textarea {
 .layout-1c .wp-caption img { max-width: 902px; }
 .layout-3c-l .wp-caption img, .layout-3c-r .wp-caption img, .layout-3c-c .wp-caption img { max-width: 474px; }
 
+/* Smiley */
+img.wp-smiley {
+	max-width: 12px;
+	padding: 0;
+	background: transparent;
+	border: none;
+	}
+
 /* Captions [caption] */
 .wp-caption {
 	overflow: hidden;
@@ -246,6 +261,7 @@ textarea {
 	margin: 0 !important;
 	}
 .gallery br {
+	display: block;
 	line-height: 0;
 	height: 0; /* Ugh! Learn CSS, WP developers! */
 	}
@@ -271,6 +287,9 @@ textarea {
 	margin: 0;
 	font: normal normal normal 12px/25px Arial, Verdana, sans-serif;
 	color: #999;
+	}
+.singular-attachment .hentry .gallery-caption {
+	display: none; /* Hide captions in gallery on attachment pages. This is a theme feature. */
 	}
 
 /* Body. */
@@ -565,6 +584,7 @@ body {
 	}
 .singular .entry-title {
 	font-size: 25px;
+	line-height: 30px;
 	}
 .singular-page .entry-title, .singular-attachment .entry-title {
 	margin-bottom: 25px;
@@ -983,7 +1003,7 @@ body {
 	clear: right;
 	float: right;
 	width: 220px;
-	padding: 25px;
+	padding: 25px 25px 0 25px;
 	}
 
 .layout-2c-r #content {
@@ -998,7 +1018,7 @@ body {
 	float: left;
 	clear: left;
 	width: 220px;
-	padding: 25px;
+	padding: 25px 25px 0 25px;
 	}
 
 .layout-3c-l #content {
