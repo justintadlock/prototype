@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Prototype WordPress Theme\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-10-20 03:23-0600\n"
+"POT-Creation-Date: 2010-10-21 03:50-0600\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Justin Tadlock <justin@justintadlock.com>\n"
 "Language-Team:  <justin@justintadlock.com>\n"
@@ -30,8 +30,15 @@ msgstr ""
 msgid "By [entry-author] on [entry-published] [entry-edit-link before=\" | \"]"
 msgstr ""
 
-#: archive.php:43
-#: home.php:44
+#: archive.php:41
+#: attachment.php:52
+#: home.php:42
+#: index.php:40
+msgid "Pages:"
+msgstr ""
+
+#: archive.php:44
+#: home.php:45
 #: index.php:43
 msgid "[entry-terms taxonomy=\"category\" before=\"Posted in \"] [entry-terms before=\"| Tagged \"] [entry-comments-link before=\" | \"]"
 msgstr ""
@@ -44,11 +51,6 @@ msgstr ""
 #: attachment.php:51
 #: index.php:39
 msgid "Continue reading <span class=\"meta-nav\">&rarr;</span>"
-msgstr ""
-
-#: attachment.php:52
-#: index.php:40
-msgid "Pages:"
 msgstr ""
 
 #: comment.php:30
@@ -80,24 +82,28 @@ msgstr ""
 msgid "Comments are closed."
 msgstr ""
 
-#: functions.php:114
+#: functions.php:117
 msgid "You are here:"
 msgstr ""
 
-#: functions.php:168
+#: functions.php:171
 msgid "Header"
 msgstr ""
 
-#: functions.php:168
+#: functions.php:171
 msgid "Displayed in the header area."
 msgstr ""
 
-#: functions.php:179
+#: functions.php:182
 msgid "Secondary Menu"
 msgstr ""
 
-#: functions.php:180
+#: functions.php:183
 msgid "Subsidiary Menu"
+msgstr ""
+
+#: functions.php:194
+msgid "Post Comment"
 msgstr ""
 
 #: loop-error.php:15
@@ -781,30 +787,30 @@ msgstr ""
 msgid "Submit"
 msgstr ""
 
-#: library/functions/context.php:353
-#: library/functions/context.php:359
-#: library/functions/context.php:362
-#: library/functions/context.php:368
-#: library/functions/context.php:371
+#: library/functions/context.php:351
+#: library/functions/context.php:357
+#: library/functions/context.php:360
+#: library/functions/context.php:366
+#: library/functions/context.php:369
 #, php-format
 msgid "Archive for %1$s"
 msgstr ""
 
-#: library/functions/context.php:356
+#: library/functions/context.php:354
 #, php-format
 msgid "Archive for minute %1$s"
 msgstr ""
 
-#: library/functions/context.php:362
+#: library/functions/context.php:360
 msgid "F jS, Y"
 msgstr ""
 
-#: library/functions/context.php:365
+#: library/functions/context.php:363
 #, php-format
 msgid "Archive for week %1$s of %2$s"
 msgstr ""
 
-#: library/functions/context.php:385
+#: library/functions/context.php:383
 #, php-format
 msgid "%1$s Page %2$s"
 msgstr ""
@@ -869,7 +875,8 @@ msgid "Leave a response"
 msgstr ""
 
 #: library/functions/shortcodes.php:207
-msgid "1 Response"
+#, php-format
+msgid "%1$s Response"
 msgstr ""
 
 #: library/functions/shortcodes.php:207
@@ -910,51 +917,51 @@ msgstr ""
 msgid "Log in to reply."
 msgstr ""
 
-#: library/functions/widgets.php:43
+#: library/functions/sidebars.php:30
 msgid "Primary"
 msgstr ""
 
-#: library/functions/widgets.php:43
+#: library/functions/sidebars.php:31
 msgid "The main (primary) widget area, most often used as a sidebar."
 msgstr ""
 
-#: library/functions/widgets.php:44
+#: library/functions/sidebars.php:41
 msgid "Secondary"
 msgstr ""
 
-#: library/functions/widgets.php:44
-msgid "The second most important widget area, most often used as a secondary sidebar"
+#: library/functions/sidebars.php:42
+msgid "The second most important widget area, most often used as a secondary sidebar."
 msgstr ""
 
-#: library/functions/widgets.php:45
+#: library/functions/sidebars.php:52
 msgid "Subsidiary"
 msgstr ""
 
-#: library/functions/widgets.php:45
+#: library/functions/sidebars.php:53
 msgid "A widget area loaded in the footer of the site."
 msgstr ""
 
-#: library/functions/widgets.php:48
+#: library/functions/sidebars.php:63
 msgid "Before Content"
 msgstr ""
 
-#: library/functions/widgets.php:48
+#: library/functions/sidebars.php:64
 msgid "Loaded before the page's main content area."
 msgstr ""
 
-#: library/functions/widgets.php:49
+#: library/functions/sidebars.php:74
 msgid "After Content"
 msgstr ""
 
-#: library/functions/widgets.php:49
+#: library/functions/sidebars.php:75
 msgid "Loaded after the page's main content area."
 msgstr ""
 
-#: library/functions/widgets.php:50
+#: library/functions/sidebars.php:85
 msgid "After Singular"
 msgstr ""
 
-#: library/functions/widgets.php:50
+#: library/functions/sidebars.php:86
 msgid "Loaded on singular post (page, attachment, etc.) views before the comments area."
 msgstr ""
 

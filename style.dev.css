@@ -36,17 +36,18 @@ h4 { font-size: 19px; }
 h5 { font-size: 17px; }
 h6 { font-size: 15px; }
 
-.entry-content h1, .entry-content h2, .entry-content h3, .entry-content h4, .entry-content h5, .entry-content h6 {
+.hfeed h1, .hfeed h2, .hfeed h3, .hfeed h4, .hfeed h5, .hfeed h6 {
 	padding-left: 15px;
 	color: #444;
-	border-left: 5px solid #ddd;
+	border-left: 5px solid #d9d9d9;
 	}
-.entry-content h1 { line-height: 25px; border-color: #d9d9d9; }
-.entry-content h2 { line-height: 23px; border-color: #ddd; }
-.entry-content h3 { line-height: 21px; border-color: #dfdfdf; }
-.entry-content h4 { line-height: 19px; border-color: #e1e1e1; }
-.entry-content h5 { line-height: 17px; border-color: #e3e3e3; }
-.entry-content h6 { line-height: 15px; border-color: #e5e5e5; }
+.hfeed h1 { line-height: 25px; }
+.hfeed h2 { line-height: 23px; border-color: #ddd; padding-left: 14px; }
+.hfeed h3 { line-height: 21px; border-color: #dfdfdf; padding-left: 13px; }
+.hfeed h4 { line-height: 19px; border-color: #e1e1e1; padding-left: 12px; }
+.hfeed h5 { line-height: 17px; border-color: #e3e3e3; padding-left: 11px; }
+.hfeed h6 { line-height: 15px; border-color: #e5e5e5; padding-left: 10px; }
+
 
 /* Horizontal rule */
 hr {
@@ -93,7 +94,7 @@ acronym {
 	text-transform: uppercase;
 	color: #555;
 	background: #fcfcfc;
-	border-bottom: 1px dotted #ccc;
+	border-bottom: 1px dotted #ddd;
 	}
 acronym:hover {
 	color: #333;
@@ -116,7 +117,7 @@ dl dd {
 	margin: 0 0 5px 10px;
 	padding: 0;
 	font-size: 14px;
-	color: #888;
+	color: #777;
 	}
 
 /* Blockquotes. */
@@ -159,6 +160,9 @@ input[type="text"] {
 	display: block;
 	width: 300px;
 	}
+input[type="submit"]:hover {
+	cursor: pointer
+	}
 textarea {
 	display: block;
 	width: 98.5%;
@@ -167,11 +171,14 @@ textarea {
 /* Alignment */
 .left, .alignleft {
 	float: left;
-	margin: 0 25px 0 0;
+	margin: 0 25px 10px 0;
 	}
 .right, .alignright {
 	float: right;
-	margin: 0 0 0 25px;
+	margin: 0 0 10px 25px;
+	}
+img.alignleft, img.alignright {
+	margin-top: 5px;
 	}
 .center, .aligncenter {
 	display: block;
@@ -577,10 +584,12 @@ body {
 	}
 
 /* Post titles */
-.entry-title {
+.hentry .entry-title {
 	margin: 0 0 10px 0;
+	padding: 0;
 	font: normal normal bold 20px/25px Arial, Verdana, sans-serif;
 	text-shadow: 1px 1px 1px #ccc;
+	border: none;
 	}
 .singular .entry-title {
 	font-size: 25px;
@@ -614,6 +623,11 @@ body {
 	}
 .singular .byline {
 	margin: 0 0 25px 0;
+	}
+
+/* Post excerpts */
+.entry-summary p {
+	margin: 0 0 10px 0;
 	}
 
 /* Post metadata */
@@ -676,12 +690,23 @@ body {
 	font: normal normal bold 13px/13px Arial, Verdana, sans-serif;
 	color: #333;
 	}
+.entry-summary .page-links {
+	clear: none;
+	font: normal normal normal 14px/14px Georgia, Times, 'Times New Roman', serif;
+	color: #999;
+	}
 .page-links a {
 	display: inline-block;
 	padding: 8px 11px;
 	margin: 0 5px 0 5px;
 	color: #aaa;
 	border: 1px solid #dfdfdf;
+	}
+.entry-summary .page-links a {
+	margin: 0 2px 0 2px;
+	padding: 4px 7px;
+	font: normal normal bold 11px/11px Arial, Verdana, sans-serif;
+	border-color: #e9e9e9;
 	}
 .page-links a:hover {
 	color: #eee;
@@ -725,13 +750,14 @@ body {
 	}
 #sidebar-after-singular .widget-title {
 	font-size: 15px;
+	line-height: 15px;
 	}
 #sidebar-after-singular .widget ul {
 	list-style: square;
 	}
 #sidebar-after-singular .widget ul li a {
 	color: #555;
-	border-bottom: 1px dotted #ccc;
+	border-bottom: 1px dotted #bbb;
 	}
 #sidebar-after-singular .widget ul li a:hover {
 	color: #000;
@@ -761,7 +787,7 @@ body {
 	}
 #sidebar-primary .widget ul li a {
 	color: #777;
-	border-bottom: 1px dotted #ccc;
+	border-bottom: 1px dotted #bbb;
 	}
 #sidebar-primary .widget ul li a:hover {
 	color: #000;
@@ -773,7 +799,7 @@ body {
 	}
 #sidebar-secondary .widget ul li a {
 	color: #777;
-	border-bottom: 1px dotted #ccc;
+	border-bottom: 1px dotted #bbb;
 	}
 #sidebar-secondary .widget ul li a:hover {
 	color: #000;
@@ -917,7 +943,7 @@ body {
 	}
 #sidebar-subsidiary .widget ul li a {
 	color: #777;
-	border-bottom: 1px dotted #ccc;
+	border-bottom: 1px dotted #bbb;
 	}
 #sidebar-subsidiary .widget ul li a:hover {
 	color: #000;
