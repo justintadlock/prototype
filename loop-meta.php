@@ -52,7 +52,13 @@
 
 		<div class="loop-meta">
 
-			<h1 class="loop-title"><?php $term = get_term_by( 'slug', get_query_var( 'term' ), get_query_var( 'taxonomy' ) ); echo $term->name; ?></h1>
+			<?php if ( function_exists( 'single_term_title' ) ) { ?>
+				<h1 class="loop-title"><?php single_term_title(); ?></h1>
+
+			<?php } else { // 3.0 compat ?>
+				<h1 class="loop-title"><?php $term = get_term_by( 'slug', get_query_var( 'term' ), get_query_var( 'taxonomy' ) ); echo $term->name; ?></h1>
+
+			<?php } ?>
 
 			<div class="loop-description">
 				<?php echo term_description( '', get_query_var( 'taxonomy' ) ); ?>
