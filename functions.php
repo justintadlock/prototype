@@ -46,8 +46,8 @@ function prototype_theme_setup() {
 	$prefix = hybrid_get_prefix();
 
 	/* Add theme support for core framework features. */
-	add_theme_support( 'hybrid-core-menus' );
-	add_theme_support( 'hybrid-core-sidebars' );
+	add_theme_support( 'hybrid-core-menus', array( 'primary', 'secondary', 'subsidiary' ) );
+	add_theme_support( 'hybrid-core-sidebars', array( 'primary', 'secondary', 'header', 'subsidiary', 'after-singular' ) );
 	add_theme_support( 'hybrid-core-widgets' );
 	add_theme_support( 'hybrid-core-shortcodes' );
 	add_theme_support( 'hybrid-core-post-meta-box' );
@@ -58,7 +58,7 @@ function prototype_theme_setup() {
 	add_theme_support( 'hybrid-core-template-hierarchy' );
 
 	/* Add theme support for framework extensions. */
-	add_theme_support( 'post-layouts' );
+	add_theme_support( 'theme-layouts', array( '1c', '2c-l', '2c-r', '3c-l', '3c-r', '3c-c' ) );
 	add_theme_support( 'post-stylesheets' );
 	add_theme_support( 'dev-stylesheet' );
 	add_theme_support( 'loop-pagination' );
@@ -68,13 +68,6 @@ function prototype_theme_setup() {
 	/* Add theme support for WordPress features. */
 	add_theme_support( 'automatic-feed-links' );
 	add_custom_background();
-
-	/* Register menus. */
-	add_action( 'init', 'prototype_register_menus', 11 );
-
-	/* Register sidebars. */
-	add_action( 'widgets_init', 'prototype_register_sidebars', 11 );
-	add_action( 'widgets_init', 'prototype_unregister_sidebars', 11 );
 
 	/* Add the breadcrumb trail just after the container is open. */
 	add_action( "{$prefix}_open_main", 'breadcrumb_trail' );
@@ -94,16 +87,6 @@ function prototype_theme_setup() {
 
 	/* Filter the comment form defaults. */
 	add_filter( 'comment_form_defaults', 'prototype_comment_form_args', 11 );
-}
-
-/**
- * Unregisters some of the core framework sidebars that the theme doesn't use.
- *
- * @since 0.1.0
- */
-function prototype_unregister_sidebars() {
-	unregister_sidebar( 'before-content' );
-	unregister_sidebar( 'after-content' );
 }
 
 /**
@@ -128,10 +111,10 @@ function prototype_breadcrumb_trail_args( $args ) {
 function prototype_one_column() {
 
 	if ( !is_active_sidebar( 'primary' ) && !is_active_sidebar( 'secondary' ) )
-		add_filter( 'get_post_layout', 'prototype_post_layout_one_column' );
+		add_filter( 'get_theme_layout', 'prototype_post_layout_one_column' );
 
 	elseif ( is_attachment() )
-		add_filter( 'get_post_layout', 'prototype_post_layout_one_column' );
+		add_filter( 'get_theme_layout', 'prototype_post_layout_one_column' );
 }
 
 /**
@@ -151,38 +134,15 @@ function prototype_post_layout_one_column( $layout ) {
 function prototype_disable_sidebars( $sidebars_widgets ) {
 	global $wp_query;
 
-	if ( current_theme_supports( 'post-layouts' ) ) {
+	if ( current_theme_supports( 'theme-layouts' ) ) {
 
-		if ( 'layout-1c' == post_layouts_get_layout() ) {
+		if ( 'layout-1c' == theme_layouts_get_layout() ) {
 			$sidebars_widgets['primary'] = false;
 			$sidebars_widgets['secondary'] = false;
 		}
 	}
 
 	return $sidebars_widgets;
-}
-
-/**
- * Registers new sidebars for the theme.
- *
- * @since 0.1.0
- */
-function prototype_register_sidebars() {
-	register_sidebar( array( 'name' => __( 'Header', hybrid_get_textdomain() ), 'id' => 'header', 'description' => __( 'Displayed in the header area.', hybrid_get_textdomain() ), 'before_widget' => '<div id="%1$s" class="widget %2$s widget-%2$s"><div class="widget-inside">', 'after_widget' => '</div></div>', 'before_title' => '<h3 class="widget-title">', 'after_title' => '</h3>' ) );
-}
-
-/**
- * Registers new nav menus for the theme.
- *
- * @since 0.1.0
- */
-function prototype_register_menus() {
-	register_nav_menus(
-		array(
-			'secondary' => __( 'Secondary Menu', hybrid_get_textdomain() ),
-			'subsidiary' => __( 'Subsidiary Menu', hybrid_get_textdomain() )
-		)
-	);
 }
 
 /**
@@ -204,9 +164,9 @@ function prototype_comment_form_args( $args ) {
  */
 function prototype_embed_defaults( $args ) {
 
-	if ( current_theme_supports( 'post-layouts' ) ) {
+	if ( current_theme_supports( 'theme-layouts' ) ) {
 
-		$layout = post_layouts_get_layout();
+		$layout = theme_layouts_get_layout();
 
 		if ( 'layout-3c-l' == $layout || 'layout-3c-r' == $layout || 'layout-3c-c' == $layout )
 			$args['width'] = 500;
