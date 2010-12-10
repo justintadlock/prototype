@@ -52,13 +52,7 @@
 
 		<div class="loop-meta">
 
-			<?php if ( function_exists( 'single_term_title' ) ) { ?>
-				<h1 class="loop-title"><?php single_term_title(); ?></h1>
-
-			<?php } else { // 3.0 compat ?>
-				<h1 class="loop-title"><?php $term = get_term_by( 'slug', get_query_var( 'term' ), get_query_var( 'taxonomy' ) ); echo $term->name; ?></h1>
-
-			<?php } ?>
+			<h1 class="loop-title"><?php single_term_title(); ?></h1>
 
 			<div class="loop-description">
 				<?php echo term_description( '', get_query_var( 'taxonomy' ) ); ?>
@@ -111,13 +105,13 @@
 
 		</div><!-- .loop-meta -->
 
-	<?php elseif ( function_exists( 'is_post_type_archive' ) && is_post_type_archive() ) : ?>
+	<?php elseif ( is_post_type_archive() ) : ?>
 
 		<?php $post_type = get_post_type_object( get_query_var( 'post_type' ) ); ?>
 
 		<div class="loop-meta">
 
-			<h1 class="loop-title"><?php echo $post_type->labels->name; ?></h1>
+			<h1 class="loop-title"><?php post_type_archive_title(); ?></h1>
 
 			<div class="loop-description">
 				<?php if ( !empty( $post_type->description ) ) echo "<p>{$post_type->description}</p>"; ?>
