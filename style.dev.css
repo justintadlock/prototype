@@ -523,6 +523,7 @@ body {
 
 /* Main wrapper div for the content and primary/secondary sidebars */
 #main {
+	clear: both;
 	overflow: hidden;
 	width: 928px;
 	margin: 0 auto;
