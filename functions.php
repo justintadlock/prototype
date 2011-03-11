@@ -20,9 +20,9 @@
  *
  * @package Prototype
  * @subpackage Functions
- * @version 0.1.0
+ * @version 0.2.0
  * @author Justin Tadlock <justin@justintadlock.com>
- * @copyright Copyright (c) 2010, Justin Tadlock
+ * @copyright Copyright (c) 2010 - 2011, Justin Tadlock
  * @link http://themehybrid.com/themes/prototype
  * @license http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
  */
@@ -64,6 +64,7 @@ function prototype_theme_setup() {
 	add_theme_support( 'loop-pagination' );
 	add_theme_support( 'get-the-image' );
 	add_theme_support( 'breadcrumb-trail' );
+	add_theme_support( 'cleaner-gallery' );
 
 	/* Add theme support for WordPress features. */
 	add_theme_support( 'automatic-feed-links' );
@@ -84,9 +85,6 @@ function prototype_theme_setup() {
 	/* Filter the sidebar widgets. */
 	add_filter( 'sidebars_widgets', 'prototype_disable_sidebars' );
 	add_action( 'template_redirect', 'prototype_one_column' );
-
-	/* Filter the comment form defaults. */
-	add_filter( 'comment_form_defaults', 'prototype_comment_form_args', 11 );
 }
 
 /**
@@ -111,18 +109,18 @@ function prototype_breadcrumb_trail_args( $args ) {
 function prototype_one_column() {
 
 	if ( !is_active_sidebar( 'primary' ) && !is_active_sidebar( 'secondary' ) )
-		add_filter( 'get_theme_layout', 'prototype_post_layout_one_column' );
+		add_filter( 'get_theme_layout', 'prototype_theme_layout_one_column' );
 
 	elseif ( is_attachment() )
-		add_filter( 'get_theme_layout', 'prototype_post_layout_one_column' );
+		add_filter( 'get_theme_layout', 'prototype_theme_layout_one_column' );
 }
 
 /**
- * Filters 'get_post_layout' by returning 'layout-1c'.
+ * Filters 'get_theme_layout' by returning 'layout-1c'.
  *
- * @since 0.1.0
+ * @since 0.2.0
  */
-function prototype_post_layout_one_column( $layout ) {
+function prototype_theme_layout_one_column( $layout ) {
 	return 'layout-1c';
 }
 
@@ -143,16 +141,6 @@ function prototype_disable_sidebars( $sidebars_widgets ) {
 	}
 
 	return $sidebars_widgets;
-}
-
-/**
- * Creates custom settings for the WordPress comment form.
- *
- * @since 0.1.0
- */
-function prototype_comment_form_args( $args ) {
-	$args['label_submit'] = __( 'Post Comment' ); // Use the default WP translation.
-	return $args;
 }
 
 /**
