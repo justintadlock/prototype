@@ -20,7 +20,7 @@
  *
  * @package Prototype
  * @subpackage Functions
- * @version 0.2.0
+ * @version 0.3.0
  * @author Justin Tadlock <justin@justintadlock.com>
  * @copyright Copyright (c) 2010 - 2011, Justin Tadlock
  * @link http://themehybrid.com/themes/prototype
@@ -50,9 +50,7 @@ function prototype_theme_setup() {
 	add_theme_support( 'hybrid-core-sidebars', array( 'primary', 'secondary', 'header', 'subsidiary', 'after-singular' ) );
 	add_theme_support( 'hybrid-core-widgets' );
 	add_theme_support( 'hybrid-core-shortcodes' );
-	add_theme_support( 'hybrid-core-post-meta-box' );
-	add_theme_support( 'hybrid-core-theme-settings' );
-	add_theme_support( 'hybrid-core-meta-box-footer' );
+	add_theme_support( 'hybrid-core-theme-settings', array( 'about', 'footer' ) );
 	add_theme_support( 'hybrid-core-drop-downs' );
 	add_theme_support( 'hybrid-core-seo' );
 	add_theme_support( 'hybrid-core-template-hierarchy' );
@@ -70,12 +68,6 @@ function prototype_theme_setup() {
 	add_theme_support( 'automatic-feed-links' );
 	add_custom_background();
 
-	/* Add the breadcrumb trail just after the container is open. */
-	add_action( "{$prefix}_open_main", 'breadcrumb_trail' );
-
-	/* Filter the breadcrumb trail arguments. */
-	add_filter( 'breadcrumb_trail_args', 'prototype_breadcrumb_trail_args' );
-
 	/* Add the search form to the secondary menu. */
 	add_action( "{$prefix}_close_menu_secondary", 'get_search_form' );
 
@@ -85,20 +77,6 @@ function prototype_theme_setup() {
 	/* Filter the sidebar widgets. */
 	add_filter( 'sidebars_widgets', 'prototype_disable_sidebars' );
 	add_action( 'template_redirect', 'prototype_one_column' );
-}
-
-/**
- * Custom breadcrumb trail arguments.
- *
- * @since 0.1.0
- */
-function prototype_breadcrumb_trail_args( $args ) {
-
-	/* Change the text before the breadcrumb trail. */
-	$args['before'] = __( 'You are here:', hybrid_get_textdomain() );
-
-	/* Return the filtered arguments. */
-	return $args;
 }
 
 /**
