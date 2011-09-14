@@ -77,6 +77,9 @@ function prototype_theme_setup() {
 	/* Filter the sidebar widgets. */
 	add_filter( 'sidebars_widgets', 'prototype_disable_sidebars' );
 	add_action( 'template_redirect', 'prototype_one_column' );
+
+	/* Set the content width. */
+	hybrid_set_content_width( 600 );
 }
 
 /**
@@ -89,7 +92,7 @@ function prototype_one_column() {
 	if ( !is_active_sidebar( 'primary' ) && !is_active_sidebar( 'secondary' ) )
 		add_filter( 'get_theme_layout', 'prototype_theme_layout_one_column' );
 
-	elseif ( is_attachment() )
+	elseif ( is_attachment() && 'layout-default' == theme_layouts_get_layout() )
 		add_filter( 'get_theme_layout', 'prototype_theme_layout_one_column' );
 }
 
