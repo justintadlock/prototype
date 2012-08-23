@@ -66,7 +66,7 @@ function prototype_theme_setup() {
 
 	/* Add theme support for WordPress features. */
 	add_theme_support( 'automatic-feed-links' );
-	add_custom_background();
+	add_theme_support( 'custom-background', array( 'default-color' => 'f9f9f9' ) );
 
 	/* Add the search form to the secondary menu. */
 	add_action( "{$prefix}_close_menu_secondary", 'get_search_form' );
