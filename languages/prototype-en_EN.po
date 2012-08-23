@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Prototype WordPress Theme\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-08-23 06:03-0600\n"
+"POT-Creation-Date: 2012-08-23 06:08-0600\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Justin Tadlock <justin@justintadlock.com>\n"
 "Language-Team:  <justin@justintadlock.com>\n"
@@ -57,28 +57,24 @@ msgstr ""
 msgid "Your comment is awaiting moderation."
 msgstr ""
 
-#: comments.php:14
-msgid "Please do not load this page directly. Thanks!"
-msgstr ""
-
-#: comments.php:29
+#: comments.php:25
 msgid "No Responses"
 msgstr ""
 
-#: comments.php:29
+#: comments.php:25
 msgid "One Response"
 msgstr ""
 
-#: comments.php:29
+#: comments.php:25
 msgid "% Responses"
 msgstr ""
 
-#: comments.php:50
+#: comments.php:46
 #, php-format
 msgid "Comments are closed, but <a href=\"%1$s\" title=\"Trackback URL for this post\">trackbacks</a> and pingbacks are open."
 msgstr ""
 
-#: comments.php:56
+#: comments.php:52
 msgid "Comments are closed."
 msgstr ""
 
