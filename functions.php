@@ -20,7 +20,7 @@
  *
  * @package Prototype
  * @subpackage Functions
- * @version 0.4.0
+ * @version 0.5.0
  * @author Justin Tadlock <justin@justintadlock.com>
  * @copyright Copyright (c) 2010 - 2012, Justin Tadlock
  * @link http://themehybrid.com/themes/prototype
