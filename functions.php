@@ -22,7 +22,7 @@
  * @subpackage Functions
  * @version 0.5.0
  * @author Justin Tadlock <justin@justintadlock.com>
- * @copyright Copyright (c) 2010 - 2012, Justin Tadlock
+ * @copyright Copyright (c) 2010 - 2013, Justin Tadlock
  * @link http://themehybrid.com/themes/prototype
  * @license http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
  */
